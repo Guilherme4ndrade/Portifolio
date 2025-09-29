@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    body {
+      display: flex;
+      justify-content: center; 
+      align-items: center;     
+      height: 100vh;          
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    form {
+      background-color: white;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 30px 20px;
+      width: 420px;
+      height: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .questions {
+      margin-top: 40px;
+      text-align: left;
+    }
+
+    .questions p {
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+
+    .options {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;  
+      margin-bottom: 30px;           
+    }
+
+    input[type="radio"] {
+      cursor: pointer; }
+   
+ 
+    input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 40px ;
+      width: 40px;
+      border-radius: 4px;
+      border: 2px  solid ;
+    }
+
+    label {
+      font-size: 16px;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: red;
+      color: rgb(255, 255, 255);
+      padding: 8px 16px;
+      border: 2px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 30px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: rgb(255, 255, 255);
+      color: black;
+    }
+
+    </style>
+</head>
+<body>
+    <form>
+        <h1>Calculadora de IMC</h1>
+
+   
+     
+
+          <div class="options">
+         
+          <label for="kg"> peso</label>
+          <input type="text" name="kg" id="kg">
+
+          <label for="cm">altura</label>
+          <input type="text" name="cm" id="cm">
+        </div>
+
+     
+
+        <button id="calcular" type="button" onclick="calculo()">Calcular</button>
+        <button id="clean" type="button" onclick="clean()">Limpar</button>
+        <p id="resultado"></p>
+        <p id="real"></p>
+    </form>
+
+</body>
+
+
+
+
+
+
+
+
+<script>
+ document.getElementById("calcular").addEventListener("click", function() {
+  
+ 
+  let kg = Number(document.getElementById("kg").value);
+  let cm = Number (document.getElementById("cm").value.replace(",", "." ));
+  
+  let ckilo = cm * cm;
+  let imc = kg / ckilo;
+if(imc > 0){
+  document.getElementById("resultado").textContent = "Resultado: " + imc.toFixed(1);
+}else{document.getElementById("resultado").textContent = "Por favor insira corretamente os dados :) " ;}
+
+  
+ if (imc < 18.5) {
+    document.getElementById("real").textContent = "Abaixo do peso";
+} else if (imc < 25) {
+    document.getElementById("real").textContent = "Peso normal";
+} else if (imc < 30) {
+    document.getElementById("real").textContent = "Sobrepeso";
+} else if(imc < 40){
+    document.getElementById("real").textContent = "Obesidade";
+} else if(imc > 40){
+    document.getElementById("real").textContent = "EXPLOSAO EMINENTE";
+}
+
+});
+document.getElementById("clean").addEventListener("click", () => {
+ document.getElementById("kg").value = "";
+    document.getElementById("cm").value = "";
+    document.getElementById("resultado").textContent = "";
+    document.getElementById("real").textContent = "";
+
+})
+
+
+</script>
+</html>
